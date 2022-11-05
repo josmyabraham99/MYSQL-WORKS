@@ -1,0 +1,71 @@
+create database fbms;
+use fbms;
+create table register(
+
+id  INT PRIMARY KEY AUTO_INCREMENT,
+Name VARCHAR(50) NOT NULL,                                   
+Email VARCHAR(50) NOT NULL UNIQUE,
+Mobile int not null,
+Nationality VARCHAR(50) NOT NULL,
+Age INT NOT NULL DEFAULT 18,
+Username varchar (15)
+);
+
+create table flight(
+flight_no int primary key, 
+flight_name varchar(50), 
+flight_description varchar(50)not null, 
+flight_total_capacity int
+)
+
+create table flightschedule(
+flight_number int not null , 
+flight_from varchar (50) not null,
+flight_to varchar (50) not null unique,
+flight_date varchar(10) not null,
+flight_time time,
+cost int not null default 300,
+constraint FK_flightschedule_flight_id FOREIGN KEY
+(flight_number) REFERENCES flight(flight_no) 
+);
+
+create table booking(
+)
+
+
+insert into register(name,email,mobile,nationality,age,username)
+values
+('sammu','sammu@gmail.com',1234,'Indian',22,'sammu@22'),
+('amal','amal@gmail.com',12345,'Australian',22,'amal@22'),
+('anoop','annop@gmail.com',123456,'American',23,'anoop@23'),
+('hrithik','hrithik@gmail.com',1234567,'Austrian',23,'hrithik@23'),
+('lokesh','lokesh@gmail.com',12345678,'Japanese',23,'lokesh@23'),
+('sreekku','sreekku@gmail.com',4321,'Chinese',22,'sreekku@22'),
+('sachin','sachin@gmail.com',54321,'Indian',23,'sachin@23'),
+('ashique','ashique@gmail.com',65432,'Austrian',22,'ashique@22');
+
+insert into flight(flight_no,flight_name,flight_description,flight_total_capacity)
+values('23','exp','good','200'),('24','tcs','ok','250'),('25','vvdn','wow','200'),('27','wipro','good','250'),('28','qburst','wow','200'),('29','thinkpalm','good','300'),('30','gadgeon','ok','250'),('31','info','wow','250');
+
+
+insert into flightschedule(flight_from,flight_to,flight_date,flight_time,cost,flight_number)
+values
+
+('Kochi','Delhi','23-06-2022',12.30,3000,23),
+('Kochi','Bengalore','23-06-2022',1.30,2000,24),
+('Kochi','chennai','25-06-2022',2.30,1000,31),
+('Kochi','alappy','23-08-2022',3.30,2000,25),
+('Kochi','Dubai','28-06-2022',11.30,15000,30),
+('Kochi','Bangalore','26-06-2022',1.30,2000,27),
+('Kochi','kozhikode','21-06-2022',12.30,800,28),
+('Kochi','idukki','29-06-2022',8.30,2000,29);
+
+select flight.flight_no ,flight.flight_name,flightschedule.flight_date,flightschedule.flight_time
+from flight inner join flightschedule 
+on flight.flight_no = flightschedule.flight_number
+where flight.flight_no in (flight_number)
+
+create view viewcustomerData
+AS
+select name as Fullname,email as EmailId,age from register
+ 

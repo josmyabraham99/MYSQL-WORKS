@@ -1,0 +1,66 @@
+create database cms;
+use cms;
+create table register(
+
+id  INT PRIMARY KEY AUTO_INCREMENT,
+Name VARCHAR(50) NOT NULL,                                   
+Email VARCHAR(50) NOT NULL UNIQUE,
+Mobile int not null,
+Pass_word VARCHAR(50) NOT NULL
+);
+
+insert into register(name,email,mobile,pass_word)
+values
+('sammu','sammu@gmail.com',1234,'Indian'),
+('amal','amal@gmail.com',12345,'Australian'),
+('anoop','annop@gmail.com',123456,'American'),
+('hrithik','hrithik@gmail.com',1234567,'Austrian'),
+('lokesh','lokesh@gmail.com',12345678,'Japanese'),
+('sreekku','sreekku@gmail.com',4321,'Chinese'),
+('sachin','sachin@gmail.com',54321,'Indian'),
+('ashique','ashique@gmail.com',65432,'Austrian');
+
+create table login(
+username int primary key, 
+pass__word varchar(50) 
+
+);
+
+create table booking(
+usernum int not null , 
+pick_up varchar (50) not null,
+drop_down varchar (50) not null unique,
+pick_date varchar(10) not null,
+pick_time time,
+cabrate int not null default 300,
+cabnumber int not null default 300,
+constraint FK_booking_login_id FOREIGN KEY
+(usernum) REFERENCES login(username) 
+);
+
+
+
+
+
+
+insert into login(username,pass__word)
+values('21','1234'),('121','2234'),('221','3234'),('321','4234'),('421','5234'),('521','6234'),('621','7234'),('721','8234'),('821','1234');
+
+
+insert into booking(usernum,pick_up,drop_down,pick_date,pick_time,cabrate,cabnumber)
+values
+
+('21','Kochi','Delhi','23-06-2022',12.30,3000,23),
+('121','Kochi','Bengalore','23-06-2022',1.30,2000,24),
+('221','Kochi','chennai','25-06-2022',2.30,1000,31),
+('321','Kochi','alappy','23-08-2022',3.30,2000,25),
+('421','Kochi','Dubai','28-06-2022',11.30,15000,30),
+('521','Kochi','Bangalore','26-06-2022',1.30,2000,27),
+('621','Kochi','kozhikode','21-06-2022',12.30,800,28),
+('721','Kochi','kollam','29-06-2022',8.30,2000,30),
+('821','Kochi','idukki','29-06-2022',8.30,2000,29);
+
+select login.username,pick_up ,drop_down,pick_date,pick_time
+from login inner join booking
+on login.username = booking.usernum
+where login.username in (usernum)
